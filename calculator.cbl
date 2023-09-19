@@ -1,5 +1,6 @@
-       DENTIFICATION DIVISION.
+       IDENTIFICATION DIVISION.
        PROGRAM-ID. CalculatorProgram.
+
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
@@ -11,41 +12,42 @@
        01 Choice       PIC X.
 
        PROCEDURE DIVISION.
-           DISPLAY "Simple Calculator".
-           DISPLAY "Enter the first operand: ".
-ACCEPT Operand1.
-           DISPLAY "Enter operator (+, -, *, /): ".
-ACCEPT Operator.
-           DISPLAY "Enter second operand: ".
-ACCEPT Operand2.
-           COMPUTE Result = 0.
+               DISPLAY "Simple Calculator".
+               DISPLAY "Enter the first operand: ".
+               ACCEPT Operand1.
+               DISPLAY "Enter operator (+, -, *, /): ".
+               ACCEPT Operator.
+               DISPLAY "Enter second operand: ".
+               ACCEPT Operand2.
 
-           EVALUATE Operator
-                   WHEN "+"
-                           COMPUTE Result = Operand1 + Operand2
-                   WHEN "-"
-                           COMPUTE Result = Operand1 - Operand2
-                   WHEN "*"
-                           COMPUTE Result = Operand1 * Operand2
-                   When "/"
-                           IF Operand2 = 0
-                                   DISPLAY "Division by zero not allowed"
-                           ELSE
-                                   COMPUTE Result = Operand1 / Operand2
-                           END-IF
-                   WHEN OTHER
-                           DISPLAY "Invalid operator"
-           END-EVALUATE
+               COMPUTE Result = 0.
 
-           DISPLAY "Result: " Result.
-
-           DISPLAY "Do you want to perform another calculation? (Y/N): "
-ACCEPT Choice.
-
-           IF Choice = "Y" OR "y"
+               EVALUATE Operator
+                       WHEN "+"
+                               COMPUTE Result = Operand1 + Operand2
+                       WHEN "-"
+                               COMPUTE Result = Operand1 - Operand2
+                       WHEN "*"
+                               COMPUTE Result = Operand1 * Operand2
+                       WHEN "/"
+                               IF Operand2 = 0
+                                       DISPLAY "Division by 0 NULL"
+                               ELSE
+                                    COMPUTE Result = Operand1 / Operand2
+                               END-IF
+                       WHEN OTHER 
+                               DISPLAY "Invalid operator"
+               END-EVALUATE
+               
+               DISPLAY "Result: " Result.
+           
+               DISPLAY "Continue? (Y/N)".
+               ACCEPT Choice.
+           
+               IF Choice = "Y" OR Choice = "y"
                    THEN
                            GO TO PROGRAM-ID.
-                   ELSE
-                           DISPLAY "Goodbye"
-                           STOP RUN.
-           END-IF
+               ELSE
+                   DISPLAY "Goodbye".
+                   STOP RUN.
+               END-IF.
