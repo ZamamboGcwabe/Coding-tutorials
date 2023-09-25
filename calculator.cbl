@@ -8,7 +8,6 @@
        01 Operator     PIC X.
        01 Operand2     PIC 9(5).
        01 Result       PIC 9(10).
-       01 Input        PIC X(10).
        01 Choice       PIC X.
 
        PROCEDURE DIVISION.
@@ -44,10 +43,11 @@
                DISPLAY "Continue? (Y/N)".
                ACCEPT Choice.
            
-               IF Choice = "Y" OR Choice = "y"
-                   THEN
-                           GO TO PROGRAM-ID.
-               ELSE
-                   DISPLAY "Goodbye".
-                   STOP RUN.
-               END-IF.
+               IF Choice = "Y" OR Choice = "y" THEN
+                       PERFORM Program-Restart
+                   ELSE
+                           DISPLAY "Goodbye".
+               STOP RUN.
+
+       Program-Restart.
+           INITIALIZE Operand1 Operator Operand2 Result Choice.
